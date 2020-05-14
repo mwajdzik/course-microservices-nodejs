@@ -14,14 +14,25 @@ app.get('/posts/:id/comments', (req, res) => {
     res.send(commentsByPostId[postId]);
 });
 
-app.post('/posts/:id/comments', (req, res) => {
+app.post('/posts/:id/comments', async (req, res) => {
     const postId = req.params.id;
     const id = randomBytes(4).toString('hex');
-    const {content} = req.body;
+    const {comment} = req.body;
     const comments = commentsByPostId[postId] || [];
-    comments.push({id, content});
+    comments.push({id, comment});
     commentsByPostId[postId] = comments;
+
+    await axios.post('http://localhost:4005/events', {
+        type: 'CommentCreated',
+        data: {id, postId, comment}
+    })
+
     res.status(201).send(comments);
+});
+
+app.get('/events', (req, res) => {
+    console.log('Received Event', req.body.type);
+    res.send({});
 });
 
 app.listen(4001, () => {
