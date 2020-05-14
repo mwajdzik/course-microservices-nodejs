@@ -13,7 +13,7 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/events', (req, res) => {
-    console.log('Received Event', req.body.type);
+    console.log('Received Event', req.body);
 
     const {type, data} = req.body;
 
@@ -21,8 +21,8 @@ app.post('/events', (req, res) => {
         const {id, title} = data;
         posts[id] = {id, title, comments: []};
     } else if (type === 'CommentCreated') {
-        const {id, postId, comment} = data;
-        posts[postId]['comments'].push({id, comment});
+        const {id, postId, content} = data;
+        posts[postId]['comments'].push({id, content});
     }
 
     res.send({});
