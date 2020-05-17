@@ -46,7 +46,7 @@ app.post('/events', (req, res) => {
 app.listen(4002, async () => {
     console.log('Query Service listening...');
 
-    const res = await axios.get('http://localhost:4005/events');
+    const res = await axios.get('http://event-bus-clusterip-srv:4005/events');
 
     for (let event of res.data) {
         const {type, data} = event;

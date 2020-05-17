@@ -6,7 +6,7 @@ export default () => {
 
     const onSubmit = async event => {
         event.preventDefault();
-        await axios.post('http://localhost:4000/posts', {title});
+        await axios.post('http://posts-clusterip-srv:4000/posts', {title});
         setTitle('');
     };
 
