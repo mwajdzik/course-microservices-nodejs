@@ -6,11 +6,11 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/events', async (req, res) => {
-    console.log('Received Event', req.body);
-
     const {type, data} = req.body;
 
     if (type === 'CommentCreated') {
+        console.log('Received Event', req.body);
+
         const {content} = data;
         const status = content.includes('orange') ? 'REJECTED' : 'APPROVED';
         const url = 'http://event-bus:4005/events';

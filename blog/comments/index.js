@@ -40,10 +40,11 @@ app.post('/posts/:id/comments', async (req, res) => {
 });
 
 app.post('/events', async (req, res) => {
-    console.log('Received Event', req.body);
     const {type, data} = req.body;
 
     if (type === 'CommentModerated') {
+        console.log('Received Event', req.body);
+
         const {id, postId, status} = data;
         const post = commentsByPostId[postId];
         const comment = post.find(c => c.id === id);

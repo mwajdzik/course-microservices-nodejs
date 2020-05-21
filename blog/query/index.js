@@ -11,16 +11,22 @@ const posts = {};
 
 function handleEvent(type, data) {
     if (type === 'PostCreated') {
+        console.log('Received Event', data);
+
         const {id, title} = data;
         posts[id] = {id, title, comments: []};
     }
 
     if (type === 'CommentCreated') {
+        console.log('Received Event', data);
+
         const {id, postId, content, status} = data;
         posts[postId]['comments'].push({id, content, status});
     }
 
     if (type === 'CommentUpdated') {
+        console.log('Received Event', data);
+
         const {id, postId, content, status} = data;
         const post = posts[postId];
         const comment = post.comments.find(c => c.id === id);
@@ -35,8 +41,6 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/events', (req, res) => {
-    console.log('Received Event', req.body);
-
     const {type, data} = req.body;
     handleEvent(type, data)
 
