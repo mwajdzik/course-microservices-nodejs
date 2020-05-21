@@ -3,6 +3,7 @@
 
 - proxyoff
 - minikube start --vm-driver virtualbox
+- minikube stop
 - minikube delete
 
 ## kubectl
@@ -27,13 +28,21 @@
 ## set up everything
 
 - for each microservice
-    - docker build -t dornick/posts:latest .
-    - docker push dornick/posts:latest
+    - docker build -t dornick/comments:latest .
+    - docker push dornick/comments:latest
     
-- kubectl apply -f posts.yaml
+- kubectl apply -f .
 - kubectl rollout restart deployment posts-depl
 
-- check port with: kubectl get services (NodePort)
-- minikube ip
+- https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac
 
-- POST {"title": "nowy post"} to 192.168.64.3:31824/posts
+## posts.com
+- modify /etc/hosts
+- get IP with: minikube ip
+- add: 192.168.64.4 posts.com 
+
+# test
+- POST {"title": "new post"} to 192.168.64.3:31255/posts        kubectl get services (NodePort)
+- POST {"title": "new post"} to posts.com/posts
+- open http://posts.com/posts
+

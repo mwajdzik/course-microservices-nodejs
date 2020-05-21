@@ -12,6 +12,7 @@ const commentsByPostId = {};
 
 app.get('/posts/:id/comments', (req, res) => {
     const postId = req.params.id;
+    console.log('Got a request for comments of ' + postId)
     res.send(commentsByPostId[postId]);
 });
 
@@ -27,7 +28,10 @@ app.post('/posts/:id/comments', async (req, res) => {
     comments.push(newComment);
     commentsByPostId[postId] = comments;
 
-    await axios.post('http://event-bus-clusterip-srv:4005/events', {
+    const eventBusUrl = 'http://event-bus:4005/events'
+    // const url = 'http://event-bus-clusterip-srv:4005/events'
+
+    await axios.post(eventBusUrl, {
         type: 'CommentCreated',
         data: {...newComment, postId}
     })
@@ -42,13 +46,15 @@ app.post('/events', async (req, res) => {
     if (type === 'CommentModerated') {
         const {id, postId, status} = data;
         const post = commentsByPostId[postId];
-        const comment = post.comments.find(c => c.id === id);
+        const comment = post.find(c => c.id === id);
+        const url = 'http://event-bus:4005/events';
+        // const url = 'http://event-bus-clusterip-srv:4005/events';
 
         comment.status = status;
 
-        await axios.post('http://event-bus-clusterip-srv:4005/events', {
+        await axios.post(url, {
             type: 'CommentUpdated',
-            data: {...comment}
+            data: {...comment, postId}
         });
     }
 

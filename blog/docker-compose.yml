@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  event-bus:
+    image: dornick/event-bus
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./event-bus
+    volumes:
+      - /app/node_modules
+      - ./event-bus:/app
+    ports:
+      - '4005:4005'
+
+  posts:
+    image: dornick/posts
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./posts
+    volumes:
+      - /app/node_modules
+      - ./posts:/app
+    ports:
+      - '4000:4000'
+
+  comments:
+    image: dornick/comments
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./comments
+    volumes:
+      - /app/node_modules
+      - ./comments:/app
+    ports:
+      - '4001:4001'
+
+  query:
+    image: dornick/query
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./query
+    volumes:
+      - /app/node_modules
+      - ./query:/app
+    ports:
+      - '4002:4002'
+    depends_on:
+      - event-bus
+
+  moderation:
+    image: dornick/moderation
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./moderation
+    volumes:
+      - /app/node_modules
+      - ./moderation:/app
+    ports:
+      - '4003:4003'
+
+  client:
+    image: dornick/client
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    ports:
+      - '3000:3000'

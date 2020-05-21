@@ -13,8 +13,10 @@ app.post('/events', async (req, res) => {
     if (type === 'CommentCreated') {
         const {content} = data;
         const status = content.includes('orange') ? 'REJECTED' : 'APPROVED';
-        
-        await axios.post('http://event-bus-clusterip-srv:4005/events', {
+        const url = 'http://event-bus:4005/events';
+        // const url = 'http://event-bus-clusterip-srv:4005/events';
+
+        await axios.post(url, {
             type: 'CommentModerated',
             data: {...data, status}
         });
