@@ -6,8 +6,13 @@ export default ({postId}) => {
 
     const onSubmit = async event => {
         event.preventDefault();
-        await axios.post(`http://localhost:4001/posts/${postId}/comments`, {content});
-        // await axios.post(`http://posts.com/posts/${postId}/comments`, {content});
+
+        // K8s with Ingress
+        await axios.post(`http://posts.com/posts/${postId}/comments`, {content});
+
+        // DockerCompose
+        // await axios.post(`http://localhost:4001/posts/${postId}/comments`, {content});
+
         setContent('');
     };
 

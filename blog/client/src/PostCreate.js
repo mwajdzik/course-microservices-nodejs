@@ -6,9 +6,13 @@ export default () => {
 
     const onSubmit = async event => {
         event.preventDefault();
-        await axios.post('http://localhost:4000/posts/create', {title});
-        // await axios.post('http://posts-clusterip-srv:4000/posts', {title});
-        // await axios.post('http://posts.com/posts/create', {title});
+
+        // K8s with Ingress
+        await axios.post('http://posts.com/posts/create', {title});
+
+        // DockerCompose
+        // await axios.post('http://localhost:4000/posts/create', {title});
+
         setTitle('');
     };
 

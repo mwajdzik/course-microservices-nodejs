@@ -12,17 +12,17 @@ spec:
         paths:
           - path: /posts/create
             backend:
-              serviceName: posts-clusterip-srv
+              serviceName: posts
               servicePort: 4000
           - path: /posts/?(.*)/comments
             backend:
-              serviceName: comments-clusterip-srv
+              serviceName: comments
               servicePort: 4001
           - path: /posts
             backend:
-              serviceName: query-clusterip-srv
+              serviceName: query
               servicePort: 4002
           - path: /?(.*)
             backend:
-              serviceName: client-clusterip-srv
+              serviceName: client
               servicePort: 3000

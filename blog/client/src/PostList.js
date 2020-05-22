@@ -7,8 +7,12 @@ export default () => {
     const [posts, setPosts] = useState({});
 
     const fetchPosts = async () => {
-        // const res = await axios.get('http://posts.com/posts');
-        const res = await axios.get('http://localhost:4002/posts');
+        // K8s with Ingress
+        const res = await axios.get('http://posts.com/posts');
+
+        // DockerCompose
+        // const res = await axios.get('http://localhost:4002/posts');
+
         setPosts(res.data);
     };
 

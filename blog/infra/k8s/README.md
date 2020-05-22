@@ -14,6 +14,7 @@
 - kubectl get pods
 - kubectl get services 
 - kubectl get deployments
+- kubectl get ingress
 
 - kubectl delete pod posts
 - kubectl delete deployment posts-depl
@@ -31,10 +32,15 @@
     - docker build -t dornick/comments:latest .
     - docker push dornick/comments:latest
     
+- https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac    
+- minikube addons enable ingress
+
 - kubectl apply -f .
 - kubectl rollout restart deployment posts-depl
 
-- https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac
+## check
+- kubectl describe pod client-depl
+- kubectl describe ingress ingress-srv
 
 ## posts.com
 - modify /etc/hosts
