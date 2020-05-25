@@ -7,6 +7,7 @@
 
 - https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac    
 - minikube addons enable ingress
+- kubectl delete validatingwebhookconfiguration ingress-nginx-admission         (if error and redeploying)
 
 - minikube ip
 - subl /etc/hosts
