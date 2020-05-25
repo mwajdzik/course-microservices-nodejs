@@ -12,3 +12,5 @@
 - subl /etc/hosts
 
 - Chrome - type: thisisunsafe
+
+- kubectl create secret generic jwt-secret --from-literal=JWT_KEY=some-crazy-secret-value
