@@ -15,7 +15,7 @@ app.set('trust proxy', true);
 app.use(json());
 app.use(cookiesession({
     signed: false,
-    secure: true
+    secure: process.env.NODE_ENV !== 'test'
 }));
 
 app.use(currentUserRouter);
