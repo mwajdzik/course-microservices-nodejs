@@ -2,17 +2,22 @@
 
 - proxyoff
 - minikube start
-
-- skaffold delete
-- skaffold dev
-
-- https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac    
-- minikube addons enable ingress
-- kubectl delete validatingwebhookconfiguration ingress-nginx-admission         (if error and redeploying)
-
 - minikube ip
-- subl /etc/hosts
-
-- Chrome - type: thisisunsafe
 
 - kubectl create secret generic jwt-secret --from-literal=JWT_KEY=some-crazy-secret-value
+- kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.31.0/deploy/static/provider/cloud/deploy.yaml
+
+- minikube addons enable ingress
+- kubectl get pods -n kube-system
+
+- skaffold dev
+- skaffold delete
+
+- kubectl get svc
+- kubectl get pods
+- kubectl get ingress
+- kubectl describe ingress
+
+- check: /etc/hosts
+- open http://ticketing.dev
+- Chrome - type: thisisunsafe

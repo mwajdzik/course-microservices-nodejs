@@ -17,3 +17,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
+    - image: dornick/tickets-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
