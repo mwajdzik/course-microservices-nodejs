@@ -16,7 +16,12 @@
 - kubectl get svc
 - kubectl get pods
 - kubectl get ingress
+- kubectl get namespace
+
 - kubectl describe ingress
+
+- kubectl get services --namespace default
+- kubectl get services --namespace ingress-nginx
 
 - check: /etc/hosts
 - open http://ticketing.dev
