@@ -1,11 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import buildClient from '../api/build-client'
+import Header from '../components/header'
 
 const AppComponent = ({Component, pageProps, currentUser}) => {
     console.log('I am called in a browser and on a server side!')
 
     return (
         <div className="container">
+            <Header currentUser={currentUser}/>
             <Component {...pageProps} />
         </div>
     );
