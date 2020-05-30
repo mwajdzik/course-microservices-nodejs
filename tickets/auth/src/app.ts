@@ -5,9 +5,8 @@ import {currentUserRouter} from "./routes/current-user";
 import {signUpRouter} from "./routes/signup";
 import {signInRouter} from "./routes/signin";
 import {signOutRouter} from "./routes/signout";
-import {errorHandler} from "./middlewares/error-handler";
-import {NotFoundError} from "./errors/not-found-error";
 import cookiesession from "cookie-session";
+import {errorHandler, NotFoundError} from "@mwtickets/common";
 
 const app = express();
 app.set('trust proxy', true);
