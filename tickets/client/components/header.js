@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
 export default ({currentUser}) => {
-    const headerOptions = [
+    const availableLinks = [
         !currentUser && {label: 'Sign Up', href: '/auth/signup'},
         !currentUser && {label: 'Sign In', href: '/auth/signin'},
         currentUser && {label: 'Sign Out', href: '/auth/signout'}
     ];
 
-    const links = headerOptions
+    const links = availableLinks
         .filter(linkConfig => linkConfig)
         .map(({label, href}) => {
             return (
@@ -20,7 +20,7 @@ export default ({currentUser}) => {
         });
 
     return (
-        <nav className="navbar navbar-light bg-light">
+        <nav className="navbar navbar-light bg-light" style={{'margin-bottom': '2em'}}>
             <Link href="/">
                 <a className="navbar-brand">GitTix</a>
             </Link>

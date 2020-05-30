@@ -13,6 +13,7 @@
 - skaffold dev
 - skaffold delete
 
+- kubectl get all -o=wide
 - kubectl get svc
 - kubectl get pods
 - kubectl get ingress

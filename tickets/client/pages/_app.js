@@ -14,7 +14,7 @@ const AppComponent = ({Component, pageProps, currentUser}) => {
 };
 
 // getInitialProps is called by NextJS during the server-side rendering
-AppComponent.getInitialProps = async appContext => {
+AppComponent.getInitialProps = async (appContext) => {
     console.log('I am called on a server side!')
 
     const client = buildClient(appContext.ctx);
