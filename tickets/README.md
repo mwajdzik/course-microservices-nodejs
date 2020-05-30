@@ -1,3 +1,7 @@
+## Type script
+
+- tsc --init
+
 ## Skaffold
 
 - proxyoff

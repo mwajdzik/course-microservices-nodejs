@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
-import {ErrorHandlerResponse} from "../errors/custom-error";
 import jwt from "jsonwebtoken";
+import {ErrorHandlerResponse} from "..";
 
 interface UserPayload {
     email: string,

@@ -1,6 +1,5 @@
 import {NextFunction, Request, Response} from 'express';
-import {ErrorHandlerResponse} from "../errors/custom-error";
-import {NotAuthorizedError} from "../errors/not-authorized-error";
+import {ErrorHandlerResponse, NotAuthorizedError} from "..";
 
 export const requireAuth = (req: Request, res: Response<ErrorHandlerResponse>, next: NextFunction) => {
     if (!req.currentUser) {
