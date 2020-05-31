@@ -18,6 +18,15 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
+    - image: dornick/tickets-tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+
     - image: dornick/tickets-client
       context: client
       docker:
