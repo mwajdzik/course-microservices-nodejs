@@ -6,5 +6,7 @@ export const errorHandler = (err: Error, req: Request, res: Response<ErrorHandle
         return res.status(err.status).send(err.serializeError());
     }
 
+    console.log(err);
+
     return res.status(400).send({errors: [{message: err.message}]});
 };
