@@ -6,7 +6,7 @@ it('returns a 404 if the ticket is not found', async () => {
     await request(app)
         .get(`/api/tickets/${new mongoose.Types.ObjectId().toHexString()}`)
         .send()
-        .expect(404);
+        .expect(404, '{"errors":[{"message":"Not found"}]}');
 });
 
 it('returns the ticket if the ticket is found', async () => {

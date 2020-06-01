@@ -14,7 +14,7 @@ it('can only be accessed if the user is signed in', async () => {
     await request(app)
         .post('/api/tickets')
         .send({})
-        .expect(401);
+        .expect(401, '{"errors":[{"message":"Not authorized"}]}');
 });
 
 it('returns a status other than 401 if the user is signed in', async () => {
@@ -33,13 +33,13 @@ it('returns an error if an invalid title is provided', async () => {
         .post('/api/tickets')
         .set('Cookie', global.signIn())
         .send({title: '', price: 10})
-        .expect(400);
+        .expect(400, '{"errors":[{"message":"title must be supplied","field":"title"}]}');
 
     await request(app)
         .post('/api/tickets')
         .set('Cookie', global.signIn())
         .send({price: 10})
-        .expect(400);
+        .expect(400, '{"errors":[{"message":"title must be supplied","field":"title"}]}');
 });
 
 it('returns an error if an invalid price is provided', async () => {
@@ -47,13 +47,13 @@ it('returns an error if an invalid price is provided', async () => {
         .post('/api/tickets')
         .set('Cookie', global.signIn())
         .send({title: 'title', price: -10})
-        .expect(400);
+        .expect(400, '{"errors":[{"message":"price must be valid","field":"price"}]}');
 
     await request(app)
         .post('/api/tickets')
         .set('Cookie', global.signIn())
         .send({title: 'title'})
-        .expect(400);
+        .expect(400, '{"errors":[{"message":"price must be valid","field":"price"}]}');
 });
 
 it('creates a ticket with valid inputs', async () => {

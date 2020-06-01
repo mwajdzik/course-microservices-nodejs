@@ -4,14 +4,14 @@ import {NotFoundError} from "@mwtickets/common";
 
 const router = express.Router()
 
-router.get('/api/tickets/:id', async (req: Request, res: Response) => {
-    const ticket = await Ticket.findById(req.params.id)
+router.get('/api/tickets', async (req: Request, res: Response) => {
+    const tickets = await Ticket.find({})
 
-    if (!ticket) {
+    if (!tickets) {
         throw new NotFoundError();
     }
 
-    res.status(200).send(ticket);
+    res.status(200).send(tickets);
 });
 
-export {router as showRouter};
+export {router as indexRouter};

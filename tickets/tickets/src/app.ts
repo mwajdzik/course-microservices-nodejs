@@ -5,6 +5,8 @@ import cookieSession from 'cookie-session';
 import {currentUser, errorHandler, NotFoundError} from '@mwtickets/common';
 import {newRouter} from "./routes/new";
 import {showRouter} from "./routes/show";
+import {indexRouter} from "./routes/index";
+import {updateRouter} from "./routes/update";
 
 const app = express();
 app.set('trust proxy', true);
@@ -19,6 +21,8 @@ app.use(currentUser);
 
 app.use(newRouter);
 app.use(showRouter);
+app.use(indexRouter);
+app.use(updateRouter);
 
 app.all('*', async () => {
     throw new NotFoundError();
