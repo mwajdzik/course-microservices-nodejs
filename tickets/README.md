@@ -31,3 +31,11 @@
 - check: /etc/hosts
 - open http://ticketing.dev
 - Chrome - type: thisisunsafe
+
+
+# Improvements
+
+- in new.ts or update.ts we should
+    - store an event to a database (transaction over both db calls)
+    - have a separate process that reads items from the events table and sends them to NATS server
+ 
