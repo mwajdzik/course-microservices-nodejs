@@ -27,6 +27,15 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
+    - image: dornick/orders-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+
     - image: dornick/tickets-client
       context: client
       docker:

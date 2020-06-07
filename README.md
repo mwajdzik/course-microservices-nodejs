@@ -25,6 +25,7 @@
     - cons: what if the user is removed and can still access the system
     - possible solution - when the user is deactivated, broadcast event to all services that keep a short-live cache to check if the uses is not on the black list
     
+
 ## Cookies vs. JWT (Json Web Token)
 
 - Cookies
@@ -36,3 +37,18 @@
     - stores any data we want (JSON)
     - have to be managed manually
 
+## Skaffold
+
+- can be run locally: skaffold dev
+- can work with GCP:
+    - if we change any synced file (skaffold.yml) - corresponding files will be updated in pods of the GCP cluster
+    - if we change any unsynced file - Skaffold will trigger docker build using Google Cloud Build, create a new image and update a deployment
+
+## Google Cloud
+
+- create a cluster 
+    - name: ticketing-dev
+    - zone: europe
+    - master version >= 1.15
+    - size: 3
+    - type: g1-small

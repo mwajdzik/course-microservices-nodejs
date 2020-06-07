@@ -1,4 +1,4 @@
-## Type script
+## TypeScript
 
 - tsc --init
 
@@ -35,7 +35,7 @@
 
 # Improvements
 
-- in new.ts or update.ts we should
+- we should ensure data integrity in new.ts and update.ts by:
     - store an event to a database (transaction over both db calls)
     - have a separate process that reads items from the events table and sends them to NATS server
  
