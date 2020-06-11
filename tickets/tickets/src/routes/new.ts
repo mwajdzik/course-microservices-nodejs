@@ -31,5 +31,5 @@ router.post('/api/tickets', requireAuth, validations, validateRequest, async (re
     res.status(201).send(ticket);
 });
 
-export {router as newRouter};
+export {router as newTicketRouter};
 

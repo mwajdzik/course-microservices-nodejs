@@ -27,7 +27,7 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
-    - image: dornick/orders-client
+    - image: dornick/tickets-orders
       context: client
       docker:
         dockerfile: Dockerfile

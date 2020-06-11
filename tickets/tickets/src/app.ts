@@ -3,10 +3,10 @@ import 'express-async-errors';
 import {json} from 'body-parser';
 import cookieSession from 'cookie-session';
 import {currentUser, errorHandler, NotFoundError} from '@mwtickets/common';
-import {newRouter} from "./routes/new";
-import {showRouter} from "./routes/show";
-import {indexRouter} from "./routes/index";
-import {updateRouter} from "./routes/update";
+import {newTicketRouter} from "./routes/new";
+import {showTicketRouter} from "./routes/show";
+import {indexTicketRouter} from "./routes/index";
+import {updateTicketRouter} from "./routes/update";
 
 const app = express();
 app.set('trust proxy', true);
@@ -19,10 +19,10 @@ app.use(cookieSession({
 
 app.use(currentUser);
 
-app.use(newRouter);
-app.use(showRouter);
-app.use(indexRouter);
-app.use(updateRouter);
+app.use(newTicketRouter);
+app.use(showTicketRouter);
+app.use(indexTicketRouter);
+app.use(updateTicketRouter);
 
 app.all('*', async () => {
     throw new NotFoundError();

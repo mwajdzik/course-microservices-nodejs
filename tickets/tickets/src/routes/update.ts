@@ -43,4 +43,4 @@ router.put('/api/tickets/:id', requireAuth, validations, validateRequest, async 
     res.status(200).send(ticket);
 });
 
-export {router as updateRouter};
+export {router as updateTicketRouter};

@@ -14,4 +14,4 @@ router.get('/api/tickets', async (req: Request, res: Response) => {
     res.status(200).send(tickets);
 });
 
-export {router as indexRouter};
+export {router as indexTicketRouter};
