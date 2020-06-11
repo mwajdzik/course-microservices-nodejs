@@ -3,6 +3,7 @@ import {Ticket} from "../../models/ticket";
 import {app} from "../../app";
 import {Order} from "../../models/order";
 import {OrderStatus} from "@mwtickets/common";
+import {natsWrapper} from "../../nats-wrapper";
 
 it('marks an order as cancelled', async () => {
     const ticket = Ticket.build({title: 'concert', price: 20});
@@ -25,6 +26,5 @@ it('marks an order as cancelled', async () => {
     const updatedOrder = await Order.findById(order.id);
 
     expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled);
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
-
-it.todo('emits a order cancelled event');
